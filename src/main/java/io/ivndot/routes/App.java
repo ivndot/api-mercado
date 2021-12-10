@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
+import io.ivndot.util.ResponseUtil;
+
 @WebServlet("/")
 public class App extends HttpServlet {
 
@@ -15,8 +19,14 @@ public class App extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().println("hola mundo web");
+		JSONObject json = new JSONObject();
+		json.put("api_version", 1.0);
 
+		// CORS configuration
+		ResponseUtil.setAccessControlHeaders(resp, "GET");
+
+		// send response
+		resp.getWriter().println(json.toString());
 	}
 
 }

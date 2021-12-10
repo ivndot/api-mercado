@@ -102,7 +102,7 @@ public class ColumnDAO extends DataAccessObject {
 	 * 
 	 * @param table  Table name
 	 * @param column Colum name
-	 * @return List<String>
+	 * @return List of distinct values
 	 * @throws SQLException
 	 * @throws DAOInitializationException
 	 */
@@ -111,7 +111,7 @@ public class ColumnDAO extends DataAccessObject {
 		ResultSet rs = null;
 		List<String> columnValuesList = new ArrayList<String>();
 
-		String sql = "SELECT " + column + " FROM " + table;
+		String sql = "SELECT DISTINCT " + column + " FROM " + table;
 
 		try {
 			ps = prepareStatement(sql);
